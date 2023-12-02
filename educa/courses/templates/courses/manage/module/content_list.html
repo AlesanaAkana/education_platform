@@ -36,7 +36,7 @@
         <div data-id="{{ content.id }}">
           {% with item=content.item %}
             <p>{{ item }}</p>
-            <a href="#">Edit</a>
+            <a href="{% url "module_content_update" module.id item|model_name item.id %}">Edit</a>
             <form action="{% url "module_content_delete" content.id %}" method="post">
               <input type="submit" value="Delete">
               {% csrf_token %}
@@ -64,4 +64,20 @@
     </ul>
   </div>
 {% endwith %}
+{% endblock %}
+
+{% block include_js %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5sortable/0.13.3/html5sortable.min.js"></script>
+{% endblock %}
+
+{% block domready %}
+  var options = {
+      method: 'POST',
+      mode: 'same-origin'
+  }
+  const moduleOrderUrl = '{% url "module_order" %}';
+  sortable('#modules', {
+    forcePlaceholderSize: true,
+    placeholderClass: 'placeholder'
+  });
 {% endblock %}
