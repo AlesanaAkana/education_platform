@@ -1,4 +1,4 @@
-from braces.views import CsrfExemptMixin, JsonResponseMixin
+from braces.views import CsrfExemptMixin, JsonRequestResponseMixin
 from django.apps import apps
 from django.contrib.auth.mixins import (LoginRequiredMixin,
                                         PermissionRequiredMixin)
@@ -150,7 +150,7 @@ class ModuleContentListView(TemplateResponseMixin, View):
         return self.render_to_response({'module': module})
 
 
-class ModuleOrderView(CsrfExemptMixin, JsonResponseMixin, View):
+class ModuleOrderView(CsrfExemptMixin, JsonRequestResponseMixin, View):
     def post(self, request):
         for id, order in self.request_json.items():
             Module.objects.filter(
@@ -159,7 +159,7 @@ class ModuleOrderView(CsrfExemptMixin, JsonResponseMixin, View):
         return self.render_json_response({'saved': 'OK'})
 
 
-class ContentOrderView(CsrfExemptMixin, JsonResponseMixin, View):
+class ContentOrderView(CsrfExemptMixin, JsonRequestResponseMixin, View):
     def post(self, request):
         for id, order in self.request_json.items():
             Content.objects.filter(
