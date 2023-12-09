@@ -1,6 +1,6 @@
 # Образовательная платформа Educa
 
-##Технологии:
+## Технологии:
 ### Python 3.10, Django 4.1, DRF 3.13,  Redis, Channels, Docker, Nginx, PostgreSQL, uWSGI, Daphne
 
 ## Запуск проекта
